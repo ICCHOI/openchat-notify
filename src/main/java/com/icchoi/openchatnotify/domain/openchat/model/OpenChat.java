@@ -1,9 +1,9 @@
-package com.icchoi.openchatnotify.domain;
+package com.icchoi.openchatnotify.domain.openchat.model;
 
 public class OpenChat {
-    String success;
-    Result result;
-    String node;
+    private String success;
+    private Result result;
+    private String node;
 
     public OpenChat() {
     }

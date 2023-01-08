@@ -1,8 +1,8 @@
-package com.icchoi.openchatnotify.scheduler;
+package com.icchoi.openchatnotify.infra.sms.slack.scheduler;
 
-import com.icchoi.openchatnotify.domain.OpenChat;
-import com.icchoi.openchatnotify.service.OpenChatService;
-import com.icchoi.openchatnotify.service.SlackBotService;
+import com.icchoi.openchatnotify.domain.openchat.model.OpenChat;
+import com.icchoi.openchatnotify.domain.openchat.service.OpenChatService;
+import com.icchoi.openchatnotify.infra.sms.slack.service.MessageService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,10 +11,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class SlackScheduler {
 
-    private final SlackBotService slackService;
+    private final MessageService slackService;
     private final OpenChatService openChatService;
 
-    public SlackScheduler(SlackBotService slackService, OpenChatService openChatService) {
+    public SlackScheduler(MessageService slackService, OpenChatService openChatService) {
         this.slackService = slackService;
         this.openChatService = openChatService;
     }
@@ -23,7 +23,7 @@ public class SlackScheduler {
     public void todayCocktail() {
         OpenChat openchat = openChatService.getApi();
         if (openchat.isHeadcountFull()) {
-            slackService.postSlackMessage("빈 자리가 있습니다.");
+            slackService.postMessage("빈 자리가 있습니다.");
         }
     }
 }

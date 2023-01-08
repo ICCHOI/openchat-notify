@@ -1,0 +1,35 @@
+package com.icchoi.openchatnotify.domain.openchat.model;
+
+import java.util.List;
+
+class Result {
+    private String name;
+    private String link;
+    private String description;
+    private Integer headcount;
+    private String master;
+    private List<String> tags;
+    private Integer like;
+
+    public Result() {
+    }
+
+    public Result(String name, String link, String description, int headcount, String master, List<String> tags,
+                  int like) {
+        this.name = name;
+        this.link = link;
+        this.description = description;
+        this.headcount = headcount;
+        this.master = master;
+        this.tags = tags;
+        this.like = like;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getHeadcount() {
+        return headcount;
+    }
+
+}

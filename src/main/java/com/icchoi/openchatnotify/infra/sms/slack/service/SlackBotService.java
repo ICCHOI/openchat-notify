@@ -1,5 +1,6 @@
-package com.icchoi.openchatnotify.service;
+package com.icchoi.openchatnotify.infra.sms.slack.service;
 
+import com.icchoi.openchatnotify.infra.sms.slack.exception.SlackApiCallException;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -9,14 +10,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SlackBotService {
+public class SlackBotService implements MessageService {
 
     @Value("${slack.token}")
-    String token;
+    private String token;
     @Value("${slack.channel.monitor}")
-    String channel;
+    private String channel;
 
-    public void postSlackMessage(String message){
+    public void postMessage(String message){
         try {
             MethodsClient methods = Slack.getInstance().methods(token);
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
@@ -27,7 +28,7 @@ public class SlackBotService {
             methods.chatPostMessage(request);
 //            log.info("보냄");
         } catch (SlackApiException | IOException e) {
-//            log.error(e.getMessage());
+            throw new SlackApiCallException();
         }
     }
 }
