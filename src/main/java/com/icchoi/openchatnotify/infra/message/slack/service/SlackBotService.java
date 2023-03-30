@@ -1,13 +1,15 @@
-package com.icchoi.openchatnotify.infra.sms.slack.service;
+package com.icchoi.openchatnotify.infra.message.slack.service;
 
-import com.icchoi.openchatnotify.infra.sms.slack.exception.SlackApiCallException;
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.icchoi.openchatnotify.infra.message.slack.exception.SlackApiCallException;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
-import java.io.IOException;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 @Service
 public class SlackBotService implements MessageService {
